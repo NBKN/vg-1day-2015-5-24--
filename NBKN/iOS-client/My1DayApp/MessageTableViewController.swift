@@ -102,6 +102,8 @@ class MessageTableViewController: UITableViewController, PostViewControllerDelag
         if segue.identifier == "openPostViewController" {
             let viewController: PostViewController = segue.destinationViewController as! PostViewController
             viewController.delegate = self
+            viewController.lastChar = getLastChar()
+            
         }
     }
     
@@ -111,5 +113,13 @@ class MessageTableViewController: UITableViewController, PostViewControllerDelag
         self.presentedViewController?.dismissViewControllerAnimated(true) {
             self.reloadMessageTableView()
         }
+    }
+    
+    func getLastChar() -> String{
+        var str:String = messages[messages.count-1].body
+        var length:Int = count(str)
+        let lastChar: String = (str as NSString).substringFromIndex(length-1)
+        println(lastChar)
+        return lastChar
     }
 }
