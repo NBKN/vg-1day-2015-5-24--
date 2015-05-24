@@ -76,7 +76,15 @@ class MessageTableViewController: UITableViewController, PostViewControllerDelag
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: MessageTableViewCell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageTableViewCell
+        // 左右交互に配置
+        let cell: MessageTableViewCell
+        if indexPath.row == 0 || indexPath.row % 2 == 0
+        {
+            cell = tableView.dequeueReusableCellWithIdentifier("MessageCell", forIndexPath: indexPath) as! MessageTableViewCell
+        }else{
+            cell = tableView.dequeueReusableCellWithIdentifier("MessageCell2", forIndexPath: indexPath) as! MessageTableViewCell
+        }
+        
         let message: Message = self.messages[indexPath.row]
         cell.setupComponentsWithMessage(message)
         return cell

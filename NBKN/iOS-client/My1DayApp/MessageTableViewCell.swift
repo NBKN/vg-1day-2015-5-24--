@@ -27,7 +27,21 @@ class MessageTableViewCell: UITableViewCell {
     func setupComponentsWithMessage(message: Message) {
         self.iconImageView.image = message.icon
         self.messageLabel.text = message.body
-        self.dateLabel.text = message.created_at
+        // Abe dateFormatter
+        var date_string:String = message.created_at
+        let stringFormatter = NSDateFormatter()
+        stringFormatter.locale = NSLocale(localeIdentifier: "ja_JP") // ロケールの設定
+        stringFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZZ" // 日付フォーマットの設定
+        var exTime: NSDate! = stringFormatter.dateFromString(date_string)
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP") // ロケールの設定
+        dateFormatter.dateFormat = "HH:mm" // 日付フォーマットの設定
+        
+        self.dateLabel.text = dateFormatter.stringFromDate(exTime)
+        // dateFormatter end.
+        
         self.nameLabel.text = message.username
         // Mission1-1 UILabel のインスタンス変数に created_at の値を代入
     }
