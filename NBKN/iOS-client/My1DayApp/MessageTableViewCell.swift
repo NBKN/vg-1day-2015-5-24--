@@ -24,6 +24,8 @@ class MessageTableViewCell: UITableViewCell {
         // Mission1-1 UILabel のインスタンス変数を初期化
     }
     
+
+    
     func setupComponentsWithMessage(message: Message) {
         self.iconImageView.image = message.icon
         self.messageLabel.text = message.body
@@ -31,4 +33,6 @@ class MessageTableViewCell: UITableViewCell {
         self.nameLabel.text = message.username
         // Mission1-1 UILabel のインスタンス変数に created_at の値を代入
     }
+
+    
 }
